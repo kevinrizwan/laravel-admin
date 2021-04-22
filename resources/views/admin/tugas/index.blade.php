@@ -49,6 +49,8 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
+                                            <th>Kategori</th>
+                                            <th>Keterangan</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -57,8 +59,10 @@
                                         @foreach($data as $i=>$row)
                                         <tr>
                                             <td>{{++$i}}</td>
-                                            <td>{{$row->nama_kategori}}</td>
-                                            <td>{{$row->status_kategori}}</td>
+                                            <td>{{$row->nama_tugas}}</td>
+                                            <td>{{$row->id_kategori}}</td>
+                                            <td>{{$row->ket_tugas}}</td>
+                                            <td>{{$row->status_tugas}}</td>
                                         </tr>
 
                                         @endforeach
