@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,5 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function (){
     Route::get('/', 'Admin\DashboardController@index');
     route::resource('/kategori', 'Admin\KategoriController');
     route::resource('/tugas', 'Admin\TugasController');
+    route::resource('/jadwalpelajaran', 'Admin\JadwalPelajaranController');
 });
