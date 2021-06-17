@@ -50,7 +50,7 @@
 
                     <div class="card-header">
                         <strong class="card-title">{{$pagename}}</strong>
-                        <a href="{{route('tugas.create')}}" class="btn btn-primary pull-right"> Tambah </a>
+                        <a href="{{route('roles.create')}}" class="btn btn-primary pull-right"> Tambah </a>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -58,25 +58,33 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>
-                                    <th>Kategori</th>
-                                    <th>Keterangan</th>
-                                    <th>Status</th>
+                                    <th>Permission</th>
                                     <th>Edit</th>
                                     <th>Hapus</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach($data as $i=>$row)
+                                @foreach($role_permission as $i=>$row)
                                 <tr>
                                     <td>{{++$i}}</td>
-                                    <td>{{$row->nama_tugas}}</td>
-                                    <td>{{$row->id_kategori}}</td>
-                                    <td>{{$row->ket_tugas}}</td>
-                                    <td>{{$row->status_tugas}}</td>
-                                    <td><a href="{{route('tugas.edit', $row->id)}}" class='btn btn-primary'>Edit </a> </td>
+                                    <td>{{$row->name}}</td>
                                     <td>
-                                        <form action="{{route('tugas.destroy', $row->id)}}" method="post">
+                                        @if($row->permissions())
+                                        <ul style="margin-left: 20px">
+                                            @foreach ($row->permissions()->get() as $permission)
+                                            <li>
+                                                {{$permission->name}}
+                                            </li>
+
+                                            @endforeach
+
+                                        </ul>
+                                        @endif
+                                    </td>
+                                    <td><a href="{{route('roles.edit', $row->id)}}" class='btn btn-primary'>Edit </a> </td>
+                                    <td>
+                                        <form action="{{route('roles.destroy', $row->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger" type="submit">Hapus </button>
