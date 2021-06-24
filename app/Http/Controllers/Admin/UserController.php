@@ -17,6 +17,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+        $this->middleware(['role:admin']);
+    }
+
     public function index()
     {
         //
