@@ -25,7 +25,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        $user->save;
+        $user->save();
 
         return response()->json($user, 201);
     }
@@ -33,8 +33,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validateData = $request->validate([
-            'email' => 'email | required|unique:users',
-            'password' => 'required|confirmed',
+            'email' => 'email | required',
+            'password' => 'required',
         ]);
 
         $login_detail = request(['email', 'password']);
